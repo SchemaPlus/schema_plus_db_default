@@ -4,5 +4,4 @@ activerecord:
     - 4.2
 db:
     - mysql2
-    - sqlite3
     - postgresql

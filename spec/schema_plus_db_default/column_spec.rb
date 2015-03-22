@@ -2,18 +2,20 @@ require 'spec_helper'
 
 describe SchemaPlus::DbDefault do
 
+  let(:default_value) { "This is the default value" }
+
   let(:migration) { ::ActiveRecord::Migration }
 
   before(:each) do
     class User < ::ActiveRecord::Base ; end
-    create_table(User, :alpha => { :default => "gabba" }, :beta => {})
+    create_table(User, :alpha => { :default => default_value }, :beta => {})
   end
 
-  context "uses db default value", :sqlite3 => :skip do
+  context "uses db default value" do
 
     it "when creating a record with DB_DEFAULT" do
       User.create!(:alpha => ActiveRecord::DB_DEFAULT, :beta => "hello")
-      expect(User.last.alpha).to eq("gabba")
+      expect(User.last.alpha).to eq(default_value)
       expect(User.last.beta).to eq("hello")
     end
 
@@ -24,22 +26,10 @@ describe SchemaPlus::DbDefault do
       expect(u.beta).to eq("hello")
       u.update_attributes(:alpha => ActiveRecord::DB_DEFAULT, :beta => "goodbye")
       u.reload
-      expect(u.alpha).to eq("gabba")
+      expect(u.alpha).to eq(default_value)
       expect(u.beta).to eq("goodbye")
     end
 
-  end
-
-  context "raises an error", :sqlite3 => :only do
-
-    it "when creating a record with DB_DEFAULT" do
-      expect { User.create!(:alpha => ActiveRecord::DB_DEFAULT, :beta => "hello") }.to raise_error ActiveRecord::StatementInvalid
-    end
-
-    it "when updating a record with DB_DEFAULT" do
-      u = User.create!(:alpha => "hey", :beta => "hello")
-      expect { u.update_attributes(:alpha => ActiveRecord::DB_DEFAULT, :beta => "goodbye") }.to raise_error ActiveRecord::StatementInvalid
-    end
   end
 
   protected
