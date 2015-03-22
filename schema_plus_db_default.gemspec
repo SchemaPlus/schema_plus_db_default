@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = SchemaPlus::DbDefault::VERSION
   gem.authors       = ["ronen barzel"]
   gem.email         = ["ronen@barzel.org"]
-  gem.summary       = %q{TODO: Write a short summary. Required.}
-  gem.description   = %q{TODO: Write a longer description. Optional.}
+  gem.summary       = %q{Lets you set an ActiveRecord attribute to the db column's default value}
+  gem.description   = %q{Defines constant ActiveRecord::DB_DEFAULT which, when saved as an attribute's value, causes the db to set the column to its default value.}
   gem.homepage      = "https://github.com/SchemaPlus/schema_plus_db_default"
   gem.license       = "MIT"
 

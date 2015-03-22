@@ -5,9 +5,22 @@
 
 # SchemaPlus::DbDefault
 
-TODO: Write a gem description
+ShemaPlus::DbDefault provides a constant `ActiveRecord::DB_DEFAULT` that you can use to set an attribute's database column to the default value or expression specified in the database schema. 
+
+(Without `ActiveRecord::DB_DEFAULT` you can update a column to `NULL` but not to its default value.)
 
 SchemaPlus::DbDefault is part of the [SchemaPlus](https://github.com/SchemaPlus/) family of Ruby on Rails ActiveRecord extension gems.
+
+## Usage
+
+Use `ActiveRecord::DB_DEFAULT` as a "magic value" for attributes; when saved it will cause SQL to use the DB default value.
+
+```ruby
+record.update_attributes(category: ActiveRecord::DB_DEFAULT) # SQL: UPDATE tablename SET category = DEFAULT
+record.reload
+```
+
+After the save, you'll need to reload the record to replace `ActiveRecord::DB_DEFAULT` with the value assigned by the database.
 
 ## Installation
 
@@ -32,13 +45,11 @@ SchemaPlus::DbDefault is tested on:
 
 <!-- SCHEMA_DEV: MATRIX - end -->
 
-## Usage
-
-TODO: Write usage instructions here
+Sqlite3 does not support setting a column to its default value.  Attempting to use `ActiveRecord::DB_DEFAULT`will raise `ActiveRecord::StatementInvalid`
 
 ## History
 
-* 0.1.0 - Initial release
+* 0.1.0 - Initial release extracted from schema_plus 1.x
 
 ## Development & Testing
 
