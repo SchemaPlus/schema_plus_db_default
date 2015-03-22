@@ -6,9 +6,6 @@ module SchemaPlus::DbDefault
     def to_s
       'DEFAULT'
     end
-    def id
-      self
-    end
     def quoted_id
       self
     end
