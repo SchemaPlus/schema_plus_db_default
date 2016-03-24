@@ -49,6 +49,7 @@ Sqlite3 does not support setting a column to its default value.  Attempting to u
 
 ## History
 
+* 0.1.1 - Upgrade schema_plus_core dependency
 * 0.1.0 - Initial release extracted from schema_plus 1.x
 
 ## Development & Testing
