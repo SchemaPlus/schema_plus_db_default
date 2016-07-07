@@ -5,7 +5,7 @@
 
 # SchemaPlus::DbDefault
 
-ShemaPlus::DbDefault provides a constant `ActiveRecord::DB_DEFAULT` that you can use to set an attribute's database column to the default value or expression specified in the database schema. 
+SchemaPlus::DbDefault provides a constant `ActiveRecord::DB_DEFAULT` that you can use to set an attribute's database column to the default value or expression specified in the database schema. 
 
 (Without `ActiveRecord::DB_DEFAULT` you can update a column to `NULL` but not to its default value.)
 
